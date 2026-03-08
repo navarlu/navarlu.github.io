@@ -1,0 +1,4 @@
+https://github.com/ctu-vras/touch-coder
+https://github.com/navarlu/InfantTouchNet
+https://github.com/navarlu/Pepper
+https://github.com/navarlu/voice-agent
