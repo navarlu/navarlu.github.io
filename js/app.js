@@ -35,10 +35,13 @@ function renderProjects(filterCategory = "All") {
       return;
     }
 
-    const card = document.createElement("a");
-    card.className = "project-card";
-    card.href = project.href;
-    if (project.external) {
+    const isClickable = Boolean(project.href) && !project.disabledLink;
+    const card = document.createElement(isClickable ? "a" : "article");
+    card.className = `project-card${isClickable ? "" : " project-card-static"}`;
+    if (isClickable) {
+      card.href = project.href;
+    }
+    if (project.external && isClickable) {
       card.target = "_blank";
       card.rel = "noreferrer";
     }
@@ -60,7 +63,11 @@ function renderProjects(filterCategory = "All") {
             <div class="project-tags">
               ${project.tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}
             </div>
-            <span class="view-project-link">${project.linkLabel || "View Project"} &rarr;</span>
+            ${
+              isClickable
+                ? `<span class="view-project-link">${project.linkLabel || "View Project"} &rarr;</span>`
+                : ""
+            }
           </div>
         </div>
       </div>
